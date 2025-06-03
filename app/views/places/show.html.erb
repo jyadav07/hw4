@@ -16,6 +16,10 @@
   <% end %>
 </div>
 
+<% if entry.uploaded_image.attached? %>
+  <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid mb-2">
+<% end %>
+
 <% if session["user_id"] != nil %>
   <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-success me-2">New Entry</a>
 <% end %>
