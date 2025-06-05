@@ -1,11 +1,18 @@
 <h1>Places</h1>
 
-<ul>
-  <% for place in @places %>
-    <li><a href="/places/<%= place["id"] %>"><%= place["name"] %></a></li>
+<% if session["user_id"] != nil %>
+  <a href="/places/new" class="btn btn-primary">New Place</a>
+<% end %>
+
+<%# used chatgpt here for the below formatting %>
+
+<ul class="list-group mb-3">
+  <% @places.each do |place| %>
+    <li class="list-group-item">
+      <a href="/places/<%= place["id"] %>"><%= place["name"] %></a>
+    </li>
   <% end %>
 </ul>
 
-<p>
-  <a href="/places/new">New place</a>
-</p>
+
+

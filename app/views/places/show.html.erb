@@ -2,26 +2,30 @@
 
 <h2 class="mt-4">Entries</h2>
 
+<% if session["user_id"] != nil %>
+  <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-success mb-3">New Entry</a>
+<% end %>
+
+<%# used chatgpt here for formatting %>
+
+
 <div class="row">
   <% @entries.each do |entry| %>
     <div class="col-md-4 mb-4">
       <div class="card h-100">
         <div class="card-body">
-          <h5 class="card-title"><%= entry["title"] %></h5>
+          <h5 class="card-title mb-1"><%= entry["title"] %></h5>
+          <p class="card-subtitle text-muted mb-2"><%= entry["occurred_on"] %></p>
+
+          <% if entry.uploaded_image.attached? %>
+            <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid mb-3">
+          <% end %>
+
           <p class="card-text"><%= entry["description"] %></p>
-          <p class="card-subtitle text-muted"><%= entry["occurred_on"] %></p>
         </div>
       </div>
     </div>
   <% end %>
 </div>
 
-<% if entry.uploaded_image.attached? %>
-  <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid mb-2">
-<% end %>
-
-<% if session["user_id"] != nil %>
-  <a href="/entries/new?place_id=<%= @place["id"] %>" class="btn btn-success me-2">New Entry</a>
-<% end %>
-
-<a href="/places" class="btn btn-secondary">Back to All Places</a>
+<a href="/places" class="btn btn-secondary mt-3">Back to All Places</a>

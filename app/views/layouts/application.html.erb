@@ -23,16 +23,15 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="/">Places Journal</a>
+      <!-- Updated brand name -->
+      <a class="navbar-brand text-decoration-underline" href="/">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="/places">Places</a>
-          </li>
+          <!-- Optional: Add other nav items here if needed -->
         </ul>
 
         <ul class="navbar-nav mb-2 mb-lg-0">
@@ -46,7 +45,7 @@
             </li>
           <% else %>
             <li class="navbar-text me-2">
-              Logged in as <%= @user["first_name"] %>
+              Logged in as <%= @user["username"] %>
             </li>
             <li class="nav-item">
               <a href="/logout" class="nav-link">Logout</a>
@@ -68,3 +67,4 @@
   </div>
 </body>
 </html>
+
