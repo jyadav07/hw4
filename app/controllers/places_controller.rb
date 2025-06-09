@@ -1,7 +1,6 @@
 class PlacesController < ApplicationController
 
   def index
-    # only show places to logged-in users
     if User.find_by({ "id" => session["user_id"] }) == nil
       flash["notice"] = "You must be logged in."
       redirect_to "/login"
@@ -12,7 +11,6 @@ class PlacesController < ApplicationController
   end
 
   def show
-    # only show place details to logged-in users
     if User.find_by({ "id" => session["user_id"] }) == nil
       flash["notice"] = "You must be logged in."
       redirect_to "/login"
@@ -21,7 +19,6 @@ class PlacesController < ApplicationController
 
     @place = Place.find_by({ "id" => params["id"] })
 
-    # only show this user's entries
     @entries = Entry.where({
       "place_id" => @place["id"],
       "user_id" => session["user_id"]
@@ -29,7 +26,6 @@ class PlacesController < ApplicationController
   end
 
   def new
-    # block if not logged in
     if User.find_by({ "id" => session["user_id"] }) == nil
       flash["notice"] = "You must be logged in."
       redirect_to "/login"
